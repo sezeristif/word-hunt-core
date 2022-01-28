@@ -16,6 +16,7 @@ gem 'httparty'
 gem 'doorkeeper'
 gem 'devise'
 gem "google-cloud-translate"
+gem 'google-cloud-storage'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,7 +1,7 @@
 require 'google/cloud/translate'
 
 class TranslateService
-  def initialize(q, to, from)
+  def initialize(q, from, to)
     @q = q
     @to = to
     @from = from

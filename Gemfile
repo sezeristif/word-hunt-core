@@ -15,7 +15,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'httparty'
 gem 'doorkeeper'
 gem 'devise'
-gem 'google-cloud'
 gem "google-cloud-translate"
 
 group :development, :test do

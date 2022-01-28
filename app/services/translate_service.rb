@@ -1,18 +1,18 @@
-class TranslateService
-  def initialize(text, source, target)
-    @text = text
-    @source = source
-    @target = target
-    @url = ENV['GOOGLE_CLOUD_TRANSLATE_API_URL']
-    @token = ENV['GOOGLE_CLOUD_TRANSLATE_API_KEY']
+require 'google/cloud/translate'
 
+class TranslateService
+  def initialize(q, to, from)
+    @q = q
+    @to = to
+    @from
+    @client = Google::Cloud::Translate.new(
+      version: :v2,
+      key: ENV['GOOGLE_CLOUD_TRANSLATE_API_KEY']
+    )
   end
 
   def translate
-    response = HTTParty.post(@url,
-                             body: body.to_json,
-                             headers: { 'Content-Type' => 'application/json', 'Authorization' => "Bearer #{@token}" })
-    JSON.parse(response.body).deep_symbolize_keys[:data][:translations][0][:translatedText]
+    @client.translate(@q, from: @from, to: @to ).text
   end
 
   def body

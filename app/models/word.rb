@@ -1,5 +1,6 @@
 class Word < ApplicationRecord
   belongs_to :user, optional: true
+  has_many :questions
 
   enum usage: { common: 0, user: 1 }
 

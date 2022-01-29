@@ -1,7 +1,7 @@
 class Word < ApplicationRecord
   belongs_to :user, optional: true
 
-  enum usage: { general: 0, by_user: 1 }
+  enum usage: { common: 0, user: 1 }
 
   validates :en, uniqueness: { scope: :user_id }
   validates :tr, uniqueness: { scope: :user_id }

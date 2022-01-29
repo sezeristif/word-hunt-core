@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users
-      resources :words
+      resources :words do
+        get 'random_word', on: :collection
+      end
       get '/users/me', to: 'users#me'
       get 'translate', to: 'translations#translate'
     end

@@ -4,8 +4,8 @@ class Word < ApplicationRecord
 
   enum usage: { common: 0, user: 1 }
 
-  validates :en, uniqueness: { scope: :user_id }
-  validates :tr, uniqueness: { scope: :user_id }
+  validates :en, uniqueness: { scope: :user_id }, allow_nil: true
+  validates :tr, uniqueness: { scope: :user_id }, allow_nil: true
 
   before_save :update_translation
   

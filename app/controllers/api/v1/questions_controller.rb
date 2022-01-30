@@ -4,11 +4,14 @@ class Api::V1::QuestionsController < Api::V1::BaseController
 
     case params[:question_type].to_sym
     when :correction
-      question = Question.create!(correct_word: word, wrong_string: generate_wrong_string(word))
+      question = Question.create!(correct_word: word, wrong_string: generate_wrong_string(word), user: current_user)
     when :multiple_choice
       first_random_word = current_user.words.where.not(id: word.id).order('RANDOM()').first
       second_random_word = current_user.words.where.not(id: [word.id, first_random_word.id]).order('RANDOM()').first
-      question = Question.create!(correct_word: word, first_random_word: first_random_word, second_random_word: second_random_word)
+      question = Question.create!(correct_word: word,
+                                  first_random_word: first_random_word,
+                                  second_random_word: second_random_word,
+                                  user: current_user)
     end
 
     render json: question, serializer: QuestionSerializer

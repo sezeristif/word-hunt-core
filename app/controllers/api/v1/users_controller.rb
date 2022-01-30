@@ -2,7 +2,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   skip_before_action :doorkeeper_authorize!, only: [:create]
 
   def me
-    render json: current_user.to_json
+    render json: current_user, serializer: UserSerializer
   end
 
   def create

@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :words
+  has_many :questions
 
   validates :email, format: URI::MailTo::EMAIL_REGEXP
 

@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   devise_for :users
   namespace :api do
     namespace :v1 do
-      resources :users
+      resources :users, only: [:create]
+      resources :questions, only: [:create] do
+        post 'check', on: :member
+      end
       resources :words do
         get 'random_word', on: :collection
       end

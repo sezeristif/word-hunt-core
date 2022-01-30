@@ -58,11 +58,16 @@ ActiveRecord::Schema.define(version: 2022_01_29_113646) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.bigint "word_id"
-    t.integer "status", default: 0
+    t.bigint "correct_word_id"
+    t.bigint "first_random_word_id"
+    t.bigint "second_random_word_id"
+    t.string "wrong_string"
+    t.integer "answer", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["word_id"], name: "index_questions_on_word_id"
+    t.index ["correct_word_id"], name: "index_questions_on_correct_word_id"
+    t.index ["first_random_word_id"], name: "index_questions_on_first_random_word_id"
+    t.index ["second_random_word_id"], name: "index_questions_on_second_random_word_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -90,4 +95,7 @@ ActiveRecord::Schema.define(version: 2022_01_29_113646) do
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "questions", "words", column: "correct_word_id"
+  add_foreign_key "questions", "words", column: "first_random_word_id"
+  add_foreign_key "questions", "words", column: "second_random_word_id"
 end

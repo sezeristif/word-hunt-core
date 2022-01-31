@@ -20,7 +20,7 @@ class Api::V1::QuestionsController < Api::V1::BaseController
   def check
     question = Question.find_by(id: params[:id])
     word = Word.find_by(id: params[:word_id]) if params[:word_id].present?
-    word = Word.find_by(en: params[:answer_string]) if params[:answer_string].present?
+    word = Word.find_by(en: params[:answer_string].downcase.strip) if params[:answer_string].present?
 
     if question.correct_word == word
       question.update(answer: :correct)
